@@ -23,16 +23,16 @@ class SettingsActivity : AppCompatActivity() {
         binding = ActivitySettingsBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        supportActionBar?.title = "Settings"
+        supportActionBar?.title = R.string.pengaturan.toString()
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         viewModel.getTheme().observe(this) {
             if (it) {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
-                binding.deskripsiMode.text = "Disable dark mode"
+                binding.deskripsiMode.text = R.string.disable_dark_mode.toString()
             } else {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
-                binding.deskripsiMode.text = "Enable dark mode"
+                binding.deskripsiMode.text = R.string.enable_dark_mode.toString()
             }
             binding.switchMode.isChecked = it
         }

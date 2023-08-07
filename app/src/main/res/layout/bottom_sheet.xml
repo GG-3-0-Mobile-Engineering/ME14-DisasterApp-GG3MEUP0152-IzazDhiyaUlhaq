@@ -34,7 +34,7 @@
                 android:id="@+id/tv_info"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Informasi Bencana Terkini"
+                android:text="@string/informasi_bencana"
                 android:textStyle="bold"
                 android:textSize="14sp"
                 android:textColor="@color/black"

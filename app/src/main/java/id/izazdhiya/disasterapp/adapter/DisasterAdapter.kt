@@ -59,8 +59,8 @@ class DisasterAdapter(private val disaster: List<Feature>) : RecyclerView.Adapte
             val createdAt = convertDate(item.properties.createdAt)
             binding.apply {
                 tvTitle.text = item.properties.disasterType.capitalize()
-                tvLocation.text = "Location:  $instanceRegion"
-                tvDate.text = "Date: $createdAt"
+                tvLocation.text = instanceRegion
+                tvDate.text = createdAt
 //                tvCoordinate.text = "Coordinate: $coordinate"
                 tvStatus.text = item.properties.status
 //                tvDeskripsi.text = item.properties.text ?: "No Title Available"
@@ -116,7 +116,7 @@ class DisasterAdapter(private val disaster: List<Feature>) : RecyclerView.Adapte
         return if (code in dataArea) {
             dataArea[code]!!
         } else {
-            "Daerah tidak ada"
+            R.string.daerah_tidak_ada.toString()
         }
     }
 
@@ -124,7 +124,7 @@ class DisasterAdapter(private val disaster: List<Feature>) : RecyclerView.Adapte
         val inputFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.getDefault())
         val outputFormat = SimpleDateFormat("dd-MM-yyyy", Locale.getDefault())
         val parsedDate = inputFormat.parse(date)
-        return outputFormat.format(parsedDate)
+        return outputFormat.format(parsedDate!!)
     }
 
 

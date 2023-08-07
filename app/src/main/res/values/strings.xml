@@ -25,4 +25,17 @@
     </string-array>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="cari_disini">Cari disini</string>
+    <string name="tanggal_mulai">Tanggal Mulai</string>
+    <string name="tanggal_akhir">Tanggal Akhir</string>
+    <string name="terapkan">Terapkan</string>
+    <string name="kembali">kembali</string>
+    <string name="informasi_bencana">Informasi Bencana</string>
+    <string name="tidak_ada_data">Tidak Ada Data</string>
+    <string name="pengaturan">Pengaturan\n</string>
+    <string name="dark_mode">Dark Mode</string>
+    <string name="enable_dark_mode">Enable dark mode</string>
+    <string name="bad_request">Bad Request</string>
+    <string name="disable_dark_mode">Disable dark mode</string>
+    <string name="daerah_tidak_ada">Daerah tidak ada</string>
 </resources>

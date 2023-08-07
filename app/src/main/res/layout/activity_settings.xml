@@ -35,7 +35,7 @@
                 android:id="@+id/titleMode"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Dark Mode"
+                android:text="@string/dark_mode"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"/>
 
@@ -43,7 +43,7 @@
                 android:id="@+id/deskripsiMode"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Enable dark mode"
+                android:text="@string/enable_dark_mode"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/titleMode"/>
 

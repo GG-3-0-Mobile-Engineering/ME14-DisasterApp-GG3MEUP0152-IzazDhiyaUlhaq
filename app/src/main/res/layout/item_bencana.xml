@@ -48,7 +48,6 @@
                     android:id="@+id/tv_Title"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Banjir Bandang"
                     android:textStyle="bold"
                     android:textSize="16sp"
                     app:layout_constraintStart_toStartOf="parent"
@@ -58,7 +57,6 @@
                     android:id="@+id/tv_Status"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Confirmed"
                     android:textSize="12sp"
                     android:textStyle="italic"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -69,7 +67,6 @@
                     android:id="@+id/tv_Location"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Location: "
                     android:textSize="14sp"
                     app:layout_constraintStart_toStartOf="@id/tv_Title"
                     app:layout_constraintTop_toBottomOf="@id/tv_Title"/>
@@ -78,7 +75,6 @@
                     android:id="@+id/tv_Date"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Date: "
                     android:textSize="14sp"
                     app:layout_constraintStart_toStartOf="@id/tv_Title"
                     app:layout_constraintTop_toBottomOf="@id/tv_Location" />

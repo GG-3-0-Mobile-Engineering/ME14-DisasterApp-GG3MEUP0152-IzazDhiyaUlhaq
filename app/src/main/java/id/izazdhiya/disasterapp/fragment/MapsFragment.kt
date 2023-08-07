@@ -190,14 +190,14 @@ class MapsFragment : Fragment() {
                 initBottomSheet()
 
             } else {
-                Toast.makeText(requireContext(), "Tidak ada data", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), R.string.tidak_ada_data, Toast.LENGTH_SHORT).show()
                 binding.lottieNodata.isVisible = true
                 binding.tvNodata.isVisible = true
                 binding.clSheet.isVisible = false
 //                refreshLayout()
             }
         } else {
-            Toast.makeText(requireContext(), "Bad Request", Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireContext(), R.string.bad_request, Toast.LENGTH_SHORT).show()
             binding.lottieNodata.isVisible = true
             binding.tvNodata.isVisible = true
             binding.clSheet.isVisible = false
@@ -275,16 +275,4 @@ class MapsFragment : Fragment() {
             }
         })
     }
-
-//    private fun refreshLayout() {
-//        val view =
-//            LayoutInflater.from(requireContext()).inflate(R.layout.fragment_maps, null)
-//        val swipe: SwipeRefreshLayout = view.findViewById(R.id.refresh_layout)
-//
-//        swipe.setOnRefreshListener {
-//            observeReports(maps)
-//            swipe.isRefreshing = false
-//        }
-//
-//    }
 }

@@ -18,7 +18,6 @@
             android:paddingStart="20dp"
             android:paddingEnd="20dp"
             android:textSize="14sp"
-            android:text="Area"
             android:textColor="@color/black"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
