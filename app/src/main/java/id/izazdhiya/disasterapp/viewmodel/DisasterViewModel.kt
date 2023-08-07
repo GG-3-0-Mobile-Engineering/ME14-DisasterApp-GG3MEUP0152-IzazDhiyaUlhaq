@@ -4,15 +4,18 @@ import android.content.ContentValues.TAG
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
+import dagger.hilt.android.lifecycle.HiltViewModel
 import id.izazdhiya.disasterapp.model.network.Resource
 import id.izazdhiya.disasterapp.repository.DisasterRepository
 import kotlinx.coroutines.Dispatchers
 import java.net.URLEncoder
 import java.nio.charset.StandardCharsets
 import java.util.concurrent.TimeUnit
+import javax.inject.Inject
 import kotlin.Exception
 
-class DisasterViewModel(private val repository: DisasterRepository) : ViewModel(){
+@HiltViewModel
+class DisasterViewModel @Inject constructor(private val repository: DisasterRepository) : ViewModel(){
 
     fun getReports() = liveData(Dispatchers.IO) {
         emit(Resource.loading(null))

@@ -4,10 +4,13 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
+import dagger.hilt.android.lifecycle.HiltViewModel
 import id.izazdhiya.disasterapp.datastore.SettingsDataStore
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class SettingsViewModel(private val pref: SettingsDataStore) : ViewModel() {
+@HiltViewModel
+class SettingsViewModel @Inject constructor(private val pref: SettingsDataStore) : ViewModel() {
 
     fun getTheme() = pref.getThemeSetting().asLiveData()
 

@@ -14,6 +14,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.textfield.TextInputEditText
+import dagger.hilt.android.AndroidEntryPoint
 import id.izazdhiya.disasterapp.R
 import id.izazdhiya.disasterapp.adapter.DisasterAreaAdapter
 import id.izazdhiya.disasterapp.databinding.FragmentSearchBinding
@@ -22,11 +23,10 @@ import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale
 
+@AndroidEntryPoint
 class SearchFragment : Fragment() {
     private var _binding: FragmentSearchBinding? = null
     private val binding get() = _binding!!
-
-    private lateinit var editText: TextInputEditText
 
     private lateinit var disasterAreaAdapter: DisasterAreaAdapter
     private lateinit var disasterAreaList: ArrayList<DisasterArea>

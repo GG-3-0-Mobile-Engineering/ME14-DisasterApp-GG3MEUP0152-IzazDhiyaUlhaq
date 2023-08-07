@@ -5,10 +5,12 @@ import android.os.Bundle
 import android.view.MenuItem
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatDelegate
+import dagger.hilt.android.AndroidEntryPoint
 import id.izazdhiya.disasterapp.databinding.ActivitySettingsBinding
 import id.izazdhiya.disasterapp.datastore.SettingsDataStore
 import id.izazdhiya.disasterapp.viewmodel.SettingsViewModel
 
+@AndroidEntryPoint
 class SettingsActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivitySettingsBinding
@@ -23,16 +25,16 @@ class SettingsActivity : AppCompatActivity() {
         binding = ActivitySettingsBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        supportActionBar?.title = R.string.pengaturan.toString()
+        supportActionBar?.title = getString(R.string.pengaturan)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         viewModel.getTheme().observe(this) {
             if (it) {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
-                binding.deskripsiMode.text = R.string.disable_dark_mode.toString()
+                binding.deskripsiMode.text = getString(R.string.disable_dark_mode)
             } else {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
-                binding.deskripsiMode.text = R.string.enable_dark_mode.toString()
+                binding.deskripsiMode.text = getString(R.string.enable_dark_mode)
             }
             binding.switchMode.isChecked = it
         }

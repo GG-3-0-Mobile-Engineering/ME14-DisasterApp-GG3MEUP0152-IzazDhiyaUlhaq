@@ -20,6 +20,7 @@ import androidx.core.app.NotificationManagerCompat
 import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import com.google.android.gms.maps.GoogleMap
+import dagger.hilt.android.AndroidEntryPoint
 import id.izazdhiya.disasterapp.databinding.ActivityMainBinding
 import id.izazdhiya.disasterapp.datastore.SettingsDataStore
 import id.izazdhiya.disasterapp.model.network.Status
@@ -31,7 +32,8 @@ import id.izazdhiya.disasterapp.viewmodel.DisasterViewModel
 import id.izazdhiya.disasterapp.viewmodel.MainViewModel
 
 
-internal class MainActivity : AppCompatActivity(){
+@AndroidEntryPoint
+class MainActivity : AppCompatActivity(){
 
     private lateinit var binding: ActivityMainBinding
 

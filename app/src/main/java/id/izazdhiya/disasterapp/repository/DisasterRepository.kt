@@ -6,8 +6,9 @@ import id.izazdhiya.disasterapp.service.ApiService
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import retrofit2.http.Query
+import javax.inject.Inject
 
-class DisasterRepository(private val apiService: ApiService) {
+class DisasterRepository @Inject constructor(private val apiService: ApiService) {
     suspend fun getReports(geoFormat: String, timePeriod: Int) = apiService.getReports(geoFormat, timePeriod)
     suspend fun getReportsByProvince(geoFormat: String, provinceId: String, timePeriod: Int) = apiService.getReportsByProvince(geoFormat, provinceId, timePeriod)
     suspend fun getReportsByDisaster(geoFormat: String, disaster: String, timePeriod: Int) = apiService.getReportsByDisaster(geoFormat, disaster, timePeriod)

@@ -24,6 +24,7 @@ import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import com.google.android.material.bottomsheet.BottomSheetBehavior
+import dagger.hilt.android.AndroidEntryPoint
 import id.izazdhiya.disasterapp.R
 import id.izazdhiya.disasterapp.SettingsActivity
 import id.izazdhiya.disasterapp.adapter.DisasterAdapter
@@ -39,6 +40,7 @@ import id.izazdhiya.disasterapp.service.ApiClient
 import id.izazdhiya.disasterapp.service.ApiService
 import id.izazdhiya.disasterapp.viewmodel.DisasterViewModel
 
+@AndroidEntryPoint
 class MapsFragment : Fragment() {
 
     private var _binding: FragmentMapsBinding? = null

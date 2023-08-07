@@ -12,7 +12,6 @@ interface ApiService {
     suspend fun getReports(
         @Query("geoformat") geoFormat: String,
         @Query("timeperiod") timePeriod: Int
-
     ): DisasterReport
 
     @GET("reports")
