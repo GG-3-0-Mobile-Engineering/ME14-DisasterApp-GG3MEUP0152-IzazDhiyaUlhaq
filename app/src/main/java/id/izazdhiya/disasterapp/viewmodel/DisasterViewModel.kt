@@ -20,7 +20,7 @@ class DisasterViewModel @Inject constructor(private val repository: DisasterRepo
     fun getReports() = liveData(Dispatchers.IO) {
         emit(Resource.loading(null))
         try {
-            emit(Resource.success(repository.getReports("geojson", 604800)))
+            emit(Resource.success(repository.getReports("geojson")))
         } catch (e: Exception) {
             emit(Resource.error(data = null, message = e.message ?: "Error Occurred!"))
         }
@@ -29,7 +29,7 @@ class DisasterViewModel @Inject constructor(private val repository: DisasterRepo
     fun getReportsByProvince(provinceId: String) = liveData(Dispatchers.IO) {
         emit(Resource.loading(null))
         try {
-            emit(Resource.success(repository.getReportsByProvince("geojson", provinceId, 604800)))
+            emit(Resource.success(repository.getReportsByProvince("geojson", provinceId)))
         } catch (e: Exception) {
             emit(Resource.error(data = null, message = e.message ?: "Error Occurred!"))
         }
@@ -38,7 +38,7 @@ class DisasterViewModel @Inject constructor(private val repository: DisasterRepo
     fun getReportsByDisaster(disaster: String) = liveData(Dispatchers.IO) {
         emit(Resource.loading(null))
         try {
-            emit(Resource.success(repository.getReportsByDisaster("geojson", disaster, 604800)))
+            emit(Resource.success(repository.getReportsByDisaster("geojson", disaster)))
         } catch (e: Exception) {
             emit(Resource.error(data = null, message = e.message ?: "Error Occurred!"))
         }
