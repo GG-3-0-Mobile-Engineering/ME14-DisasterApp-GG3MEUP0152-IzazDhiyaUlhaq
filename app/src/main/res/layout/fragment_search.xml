@@ -5,7 +5,6 @@
     android:id="@+id/fragment_search"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
     tools:context=".fragment.SearchFragment">
 
     <androidx.cardview.widget.CardView
@@ -41,22 +40,9 @@
                 android:id="@+id/et_search"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@drawable/background_search_bar"
+                android:background="@android:color/transparent"
                 android:hint="@string/cari_disini"
                 android:inputType="text"/>
-
-<!--            <androidx.appcompat.widget.SearchView-->
-<!--                android:id="@+id/sv_searchArea"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="match_parent"-->
-<!--                android:paddingEnd="10dp"-->
-<!--                android:queryHint="Cari disini"-->
-<!--                android:inputType="text"-->
-<!--                android:textSize="16sp"-->
-<!--                style="@style/AppSearchView"-->
-<!--                app:layout_constraintStart_toEndOf="@id/iv_backToMaps"-->
-<!--                app:layout_constraintTop_toTopOf="parent"-->
-<!--                app:layout_constraintBottom_toBottomOf="parent"/>-->
 
         </LinearLayout>
 
@@ -110,11 +96,15 @@
 
         </com.google.android.material.textfield.TextInputLayout>
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
+            android:background="@drawable/background_setting"
             android:id="@+id/btnSubmit"
+            android:padding="10dp"
             android:layout_marginStart="5dp"
+            android:textColor="@color/white"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
+            android:foreground="?android:attr/selectableItemBackground"
             android:text="@string/terapkan"/>
 
     </LinearLayout>
