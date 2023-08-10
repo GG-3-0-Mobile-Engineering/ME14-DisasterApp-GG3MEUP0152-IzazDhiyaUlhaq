@@ -35,6 +35,7 @@ import id.izazdhiya.disasterapp.model.DisasterType
 import id.izazdhiya.disasterapp.model.network.Resource
 import id.izazdhiya.disasterapp.model.network.Status
 import id.izazdhiya.disasterapp.model.network.response.DisasterReport
+import id.izazdhiya.disasterapp.model.network.response.Feature
 import id.izazdhiya.disasterapp.repository.DisasterRepository
 import id.izazdhiya.disasterapp.repository.viewModelsFactory
 import id.izazdhiya.disasterapp.service.ApiClient
@@ -57,6 +58,9 @@ class MapsFragment : Fragment() {
     private val disasterViewModel: DisasterViewModel by viewModelsFactory { DisasterViewModel(disasterRepository) }
 
     private lateinit var maps: GoogleMap
+
+    private lateinit var disasterReport: Resource<DisasterReport>
+    private lateinit var typeSelected: String
 
     private val callback = OnMapReadyCallback { googleMap ->
         Log.d(TAG, "MAPS: ADA")
@@ -128,11 +132,8 @@ class MapsFragment : Fragment() {
             binding.lottieNodata.isVisible = false
             binding.lottieSearchlocation.isVisible = true
             map.clear()
-            if (id == "all") {
-                observeReports(map)
-            } else {
-                observeReportsByDisaster(id, map)
-            }
+            typeSelected = id
+            setData(disasterReport, map, id)
         }
 
         binding.rvDisasterType.apply {
@@ -145,8 +146,7 @@ class MapsFragment : Fragment() {
         when (it.status) {
             Status.SUCCESS -> {
                 binding.pbDisaster.isVisible = false
-                binding.lottieSearchlocation.isVisible = false
-                setData(it, map)
+                setData(it, map, "all")
             }
             Status.ERROR -> {
                 Toast.makeText(requireContext(), it.message, Toast.LENGTH_SHORT).show()
@@ -164,9 +164,16 @@ class MapsFragment : Fragment() {
         }
     }
 
-    private fun setData(it: Resource<DisasterReport>, map: GoogleMap){
+    private fun setData(it: Resource<DisasterReport>, map: GoogleMap, typeDisaster: String){
+        disasterReport = it
+        binding.lottieSearchlocation.isVisible = false
         if (it.data?.statusCode == 200) {
-            val disaster = it.data.result?.features
+            var disaster = it.data.result?.features
+            if (typeDisaster != "all") {
+                disaster = disaster?.filter { element ->
+                    element.properties.disasterType == typeDisaster
+                }
+            }
             if (!disaster.isNullOrEmpty()) {
                 binding.rvDisasterType.isVisible = true
                 binding.clSheet.isVisible = true
@@ -180,7 +187,7 @@ class MapsFragment : Fragment() {
 
                 val firstElement = disaster[0]
                 val latLng = LatLng(firstElement.geometry.coordinates[1], firstElement.geometry.coordinates[0])
-                map.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 15.0f))
+                map.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 7.0f))
 
 //                disasterAdapter.updateData(disaster)
 
