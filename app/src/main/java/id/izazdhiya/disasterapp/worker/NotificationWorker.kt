@@ -1,22 +1,23 @@
-package id.izazdhiya.disasterapp
+package id.izazdhiya.disasterapp.worker
 
 import android.content.Context
-import androidx.work.Worker
 import androidx.work.WorkerParameters
 import id.izazdhiya.disasterapp.model.network.response.flood.Flood
 import id.izazdhiya.disasterapp.model.network.response.flood.Geometry
 import id.izazdhiya.disasterapp.service.ApiClient
 import id.izazdhiya.disasterapp.service.ApiService
 import id.izazdhiya.disasterapp.utils.NotificationUtil
-import kotlinx.coroutines.runBlocking
+import androidx.work.CoroutineWorker
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 
 class NotificationWorker(appContext: Context, workerParams: WorkerParameters) :
-    Worker(appContext, workerParams) {
+    CoroutineWorker(appContext, workerParams) {
 
     private val apiService: ApiService by lazy { ApiClient.instance }
 
-    override fun doWork(): Result {
-        runBlocking {
+    override suspend fun doWork(): Result {
+        return try {
             val apiData = fetchDataFromApi()
             val geometriesWithHighestState = getGeometryWithHighestState(apiData)
 
@@ -35,32 +36,34 @@ class NotificationWorker(appContext: Context, workerParams: WorkerParameters) :
                 val content = "Terjadi banjir di daerah $area, $city. Ketinggian air $message. Hati-Hati!"
                 NotificationUtil.createNotification(applicationContext, title, content)
             }
-        }
 
-        return Result.success()
+            Result.success()
+        } catch (e: Exception) {
+            Result.failure()
+        }
     }
 
-
     private suspend fun fetchDataFromApi(): Flood {
-        return apiService.getFloods("geojson", "ID-JK", 1)
+        return withContext(Dispatchers.IO) {
+            apiService.getFloods("geojson", "ID-JK", 1)
+        }
     }
 
     private fun isConditionMet(apiData: Flood): Boolean {
-        return apiData.result.objects.output.geometries.isNotEmpty()
+        return apiData.result?.objects?.output?.geometries?.isNotEmpty() == true
     }
 
     private fun getGeometryWithHighestState(apiData: Flood): Geometry? {
-        val objects = apiData.result.objects
-        return if (isConditionMet(apiData)) {
+        val objects = apiData.result?.objects
+        return if (objects != null && isConditionMet(apiData)) {
             val output = objects.output
-            val geometries = output.geometries
-            geometries.maxByOrNull { it.properties.state }
+            val geometries = output?.geometries
+            geometries?.maxByOrNull { it.properties.state }
         } else {
             null
         }
     }
-
-
-
 }
+
+
 

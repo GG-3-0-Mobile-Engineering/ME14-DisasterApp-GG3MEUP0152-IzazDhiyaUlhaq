@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import android.widget.FrameLayout
 import android.widget.Toast
 import androidx.core.view.isVisible
+import androidx.fragment.app.viewModels
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -28,6 +29,7 @@ import id.izazdhiya.disasterapp.adapter.DisasterAdapter
 import id.izazdhiya.disasterapp.adapter.DisasterTypeAdapter
 import id.izazdhiya.disasterapp.databinding.FragmentMapsBinding
 import id.izazdhiya.disasterapp.model.DisasterType
+import id.izazdhiya.disasterapp.model.local.entity.Disaster
 import id.izazdhiya.disasterapp.model.network.Resource
 import id.izazdhiya.disasterapp.model.network.Status
 import id.izazdhiya.disasterapp.model.network.response.DisasterReport
@@ -47,27 +49,11 @@ class MapsFragment : Fragment() {
     private lateinit var disasterTypeList: ArrayList<DisasterType>
 
     private lateinit var disasterAdapter: DisasterAdapter
-    private val apiService: ApiService by lazy { ApiClient.instance }
 
-    private val disasterRepository: DisasterRepository by lazy { DisasterRepository(apiService) }
-    private val disasterViewModel: DisasterViewModel by viewModelsFactory { DisasterViewModel(disasterRepository) }
+    private val disasterViewModel: DisasterViewModel by viewModels()
 
     private lateinit var disasterReport: Resource<DisasterReport>
     private lateinit var typeSelected: String
-
-    private val callback = OnMapReadyCallback { googleMap ->
-        if (!area.isNullOrBlank()) {
-            observeReportsByProvince(area!!, googleMap)
-            arguments?.remove("area")
-        } else if (!startDate.isNullOrBlank() && !endDate.isNullOrBlank()) {
-            observeArchive(startDate!!, endDate!!, googleMap)
-            arguments?.remove("startDate")
-            arguments?.remove("endDate")
-        } else {
-            observeReports(googleMap)
-        }
-        createDisasterType(googleMap)
-    }
 
     private var area: String? = null
     private var startDate: String? = null
@@ -93,6 +79,20 @@ class MapsFragment : Fragment() {
         area = arguments?.getString("area")
         startDate = arguments?.getString("startDate")
         endDate = arguments?.getString("endDate")
+
+        val callback = OnMapReadyCallback { googleMap ->
+            if (!area.isNullOrBlank()) {
+                observeReportsByProvince(area!!, googleMap)
+                arguments?.remove("area")
+            } else if (!startDate.isNullOrBlank() && !endDate.isNullOrBlank()) {
+                observeArchive(startDate!!, endDate!!, googleMap)
+                arguments?.remove("startDate")
+                arguments?.remove("endDate")
+            } else {
+                observeReports(googleMap)
+            }
+            createDisasterType(googleMap)
+        }
 
         val mapFragment = childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment?
         mapFragment?.getMapAsync(callback)

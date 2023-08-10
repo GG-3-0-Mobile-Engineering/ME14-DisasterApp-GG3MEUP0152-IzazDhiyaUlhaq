@@ -1,15 +1,35 @@
-//package id.izazdhiya.disasterapp.model.local.entity
-//
-//import androidx.room.Embedded
-//import androidx.room.Entity
-//import androidx.room.PrimaryKey
-//import id.izazdhiya.disasterapp.model.network.response.Geometry
-//import id.izazdhiya.disasterapp.model.network.response.Properties
-//
-//@Entity(tableName = "disaster")
-//data class Disaster(
-//    @PrimaryKey(autoGenerate = true) val id: Long,
-//    @Embedded val geometry: Geometry,
-//    @Embedded val properties: Properties,
-//    val type: String
-//)
+package id.izazdhiya.disasterapp.model.local.entity
+
+import androidx.room.ColumnInfo
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+
+@Entity(tableName = "disaster")
+data class Disaster(
+
+    @PrimaryKey
+    @ColumnInfo(name = "pKey")
+    val pKey: String,
+
+    @ColumnInfo(name = "disasterType")
+    val disasterType: String,
+
+    @ColumnInfo(name = "imageUrl")
+    val imageUrl: String? = null,
+
+    @ColumnInfo(name = "loc")
+    val loc: String? = null,
+
+    @ColumnInfo(name = "latitude")
+    val latitude: Double,
+
+    @ColumnInfo(name = "longitude")
+    val longitude: Double,
+
+    @ColumnInfo(name = "date")
+    val date: String,
+
+    @ColumnInfo(name = "status")
+    val status: String
+
+)
