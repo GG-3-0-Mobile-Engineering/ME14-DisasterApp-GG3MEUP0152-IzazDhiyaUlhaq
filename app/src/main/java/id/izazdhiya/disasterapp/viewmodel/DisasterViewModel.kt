@@ -67,7 +67,7 @@ class DisasterViewModel @Inject constructor(private val repository: DisasterRepo
     fun getFloods() = liveData(Dispatchers.IO) {
         emit(Resource.loading(null))
         try {
-            emit(Resource.success(repository.getFloods("topojson", "ID-JK", 3)))
+            emit(Resource.success(repository.getFloods("topojson", "ID-JK", 1)))
         } catch (e: Exception) {
             emit(Resource.error(data = null, message = e.message ?: "Error Occurred!"))
         }

@@ -96,4 +96,6 @@ dependencies {
     debugImplementation "com.github.chuckerteam.chucker:library:$chucker_version"
     releaseImplementation "com.github.chuckerteam.chucker:library-no-op:$chucker_version"
 
+    implementation "androidx.work:work-runtime-ktx:2.8.1"
+
 }
