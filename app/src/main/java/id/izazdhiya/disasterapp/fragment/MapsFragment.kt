@@ -1,22 +1,18 @@
 package id.izazdhiya.disasterapp.fragment
 
-import android.content.ContentValues.TAG
 import android.content.Intent
 import androidx.fragment.app.Fragment
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.WindowManager
 import android.widget.FrameLayout
 import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
@@ -35,7 +31,6 @@ import id.izazdhiya.disasterapp.model.DisasterType
 import id.izazdhiya.disasterapp.model.network.Resource
 import id.izazdhiya.disasterapp.model.network.Status
 import id.izazdhiya.disasterapp.model.network.response.DisasterReport
-import id.izazdhiya.disasterapp.model.network.response.Feature
 import id.izazdhiya.disasterapp.repository.DisasterRepository
 import id.izazdhiya.disasterapp.repository.viewModelsFactory
 import id.izazdhiya.disasterapp.service.ApiClient
@@ -57,18 +52,14 @@ class MapsFragment : Fragment() {
     private val disasterRepository: DisasterRepository by lazy { DisasterRepository(apiService) }
     private val disasterViewModel: DisasterViewModel by viewModelsFactory { DisasterViewModel(disasterRepository) }
 
-    private lateinit var maps: GoogleMap
-
     private lateinit var disasterReport: Resource<DisasterReport>
     private lateinit var typeSelected: String
 
     private val callback = OnMapReadyCallback { googleMap ->
-        Log.d(TAG, "MAPS: ADA")
         if (!area.isNullOrBlank()) {
             observeReportsByProvince(area!!, googleMap)
             arguments?.remove("area")
         } else if (!startDate.isNullOrBlank() && !endDate.isNullOrBlank()) {
-            Log.d(TAG, "startDate: $startDate, endDate : $endDate")
             observeArchive(startDate!!, endDate!!, googleMap)
             arguments?.remove("startDate")
             arguments?.remove("endDate")
@@ -77,7 +68,6 @@ class MapsFragment : Fragment() {
         }
         createDisasterType(googleMap)
     }
-
 
     private var area: String? = null
     private var startDate: String? = null
@@ -154,12 +144,10 @@ class MapsFragment : Fragment() {
                 binding.lottieNodata.isVisible = true
                 binding.lottieSearchlocation.isVisible = false
                 binding.clSheet.isVisible = false
-//                refreshLayout()
             }
             Status.LOADING -> {
                 binding.pbDisaster.isVisible = true
                 binding.clSheet.isVisible = false
-//                refreshLayout()
             }
         }
     }
@@ -189,8 +177,6 @@ class MapsFragment : Fragment() {
                 val latLng = LatLng(firstElement.geometry.coordinates[1], firstElement.geometry.coordinates[0])
                 map.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 7.0f))
 
-//                disasterAdapter.updateData(disaster)
-
                 disasterAdapter = DisasterAdapter(disaster)
                 binding.rvItemBencana.apply {
                     adapter = disasterAdapter
@@ -204,25 +190,17 @@ class MapsFragment : Fragment() {
                 binding.lottieNodata.isVisible = true
                 binding.tvNodata.isVisible = true
                 binding.clSheet.isVisible = false
-//                refreshLayout()
             }
         } else {
             Toast.makeText(requireContext(), R.string.bad_request, Toast.LENGTH_SHORT).show()
             binding.lottieNodata.isVisible = true
             binding.tvNodata.isVisible = true
             binding.clSheet.isVisible = false
-//            refreshLayout()
         }
     }
 
     private fun observeReports(map: GoogleMap) {
         disasterViewModel.getReports().observe(viewLifecycleOwner) {
-            statusObserve(it, map)
-        }
-    }
-
-    private fun observeReportsByDisaster(disasterType: String, map: GoogleMap) {
-        disasterViewModel.getReportsByDisaster(disasterType).observe(viewLifecycleOwner) {
             statusObserve(it, map)
         }
     }
