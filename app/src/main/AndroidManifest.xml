@@ -42,10 +42,10 @@
             android:required="false" />
 
         <activity
-            android:name=".SettingsActivity"
+            android:name=".ui.SettingsActivity"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".ui.MainActivity"
             android:exported="true"
             android:theme="@style/AppTheme.TransparentStatusBar">
             <intent-filter>

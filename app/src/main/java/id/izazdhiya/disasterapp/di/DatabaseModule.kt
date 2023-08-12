@@ -6,7 +6,7 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import id.izazdhiya.disasterapp.model.local.DisasterDatabase
+import id.izazdhiya.disasterapp.data.source.local.DisasterDatabase
 import javax.inject.Singleton
 
 @InstallIn(SingletonComponent::class)
