@@ -14,7 +14,7 @@ import javax.inject.Inject
 import kotlin.Exception
 
 @HiltViewModel
-class DisasterViewModel @Inject constructor(private val repository: DisasterRepository, private val disasterDao: DisasterDao) : ViewModel(){
+class DisasterViewModel @Inject constructor(private val repository: DisasterRepository) : ViewModel(){
 
 //    fun getReports(): LiveData<List<Disaster>> = disasterDao.getDisaster()
 //    fun getReportsByProvince(provinceId: String): LiveData<List<Disaster>> = disasterDao.getDisasterByType(provinceId)
