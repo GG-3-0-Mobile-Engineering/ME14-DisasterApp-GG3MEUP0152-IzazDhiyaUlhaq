@@ -43,4 +43,4 @@ MAPS_API_KEY={ADD_YOUR_API_KEY}
 <img src="screenshots/maps.jpg" width="25%"> <img src="screenshots/search.jpg" width="25%">  <img src="screenshots/listdisaster.jpg" width="25%">  <img src="screenshots/settings.jpg" width="25%">
 
 ## APK Installation
-[Disaster App](https://drive.google.com/file/d/10C0GUNrXhbaJ_pzYaI2Qvq4lUAfTstup/view?usp=sharing)
+[Download Disaster App](https://drive.google.com/file/d/1FYeqWWI-G4TaGmlu1dwniyhcpSvKRgL9/view?usp=sharing)
