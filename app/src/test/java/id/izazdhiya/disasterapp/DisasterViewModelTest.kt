@@ -2,6 +2,7 @@ package id.izazdhiya.disasterapp
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.Observer
+import id.izazdhiya.disasterapp.data.service.ApiService
 import id.izazdhiya.disasterapp.data.source.network.Resource
 import id.izazdhiya.disasterapp.data.source.network.response.DisasterReport
 import id.izazdhiya.disasterapp.data.source.network.response.Feature
@@ -39,7 +40,6 @@ class DisasterViewModelTest {
 
     @Mock
     private lateinit var repository: DisasterRepository
-
     private lateinit var viewModel: DisasterViewModel
     private val testDispatcher = TestCoroutineDispatcher()
 
@@ -47,6 +47,8 @@ class DisasterViewModelTest {
     fun setUp() {
         MockitoAnnotations.initMocks(this)
         Dispatchers.setMain(testDispatcher)
+        val apiServiceMock = mock(ApiService::class.java)
+        repository = DisasterRepository(apiServiceMock)
         viewModel = DisasterViewModel(repository)
     }
 
@@ -61,11 +63,9 @@ class DisasterViewModelTest {
 
         `when`(repository.getReports("geojson")).thenReturn(createMockDisasterReports())
 
-        // When
         val observer = mock(Observer::class.java) as Observer<Resource<DisasterReport>>
         viewModel.getReports().observeForever(observer)
 
-        // Then
         verify(repository).getReports("geojson")
         verify(observer).onChanged(Resource.loading(null))
         verify(observer).onChanged(Resource.success(createMockDisasterReports()))
@@ -73,16 +73,12 @@ class DisasterViewModelTest {
 
     @Test
     fun `getReportsByProvince should return success`() = testDispatcher.runBlockingTest {
-        // Given
-
         val provinceId = "ID-JK"
         `when`(repository.getReportsByProvince("geojson", provinceId)).thenReturn(createMockDisasterReports())
 
-        // When
         val observer = mock(Observer::class.java) as Observer<Resource<DisasterReport>>
         viewModel.getReportsByProvince(provinceId).observeForever(observer)
 
-        // Then
         verify(repository).getReportsByProvince("geojson", provinceId)
         verify(observer).onChanged(Resource.loading(null))
         verify(observer).onChanged(Resource.success(createMockDisasterReports()))
