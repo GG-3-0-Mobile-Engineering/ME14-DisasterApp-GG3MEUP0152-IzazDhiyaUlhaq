@@ -14,7 +14,7 @@ The Disaster App is an application that helps users monitor various natural disa
 The Disaster App application was built using:
 |Name| Version |
 |--|--|
-| Hilt | 2.43.2 |
+| Hilt | 2.44 |
 | Lifecycle | 2.6.1 |
 | Datastore Preferences | 1.0.0 |
 | Retrofit 2 | 2.9.0 |
@@ -47,3 +47,6 @@ MAPS_API_KEY={ADD_YOUR_API_KEY}
 
 ## Instrument Testing
 [![Youtube](screenshots/instrumenttest.png)](https://youtu.be/46KFl-pKdbM)
+
+## Unit Testing
+<img src="screenshots/unittest.png" width="25%">
