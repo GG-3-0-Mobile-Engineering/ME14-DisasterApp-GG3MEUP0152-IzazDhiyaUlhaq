@@ -1,4 +1,4 @@
-package id.izazdhiya.disasterapp
+package id.izazdhiya.disasterapp.viewmodeltest
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.Observer
