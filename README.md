@@ -49,4 +49,4 @@ MAPS_API_KEY={ADD_YOUR_API_KEY}
 [![Youtube](screenshots/instrumenttest.png)](https://youtu.be/46KFl-pKdbM)
 
 ## Unit Testing
-<img src="screenshots/unittest.png" width="25%">
+<img src="screenshots/unittest.png" width="50%">
