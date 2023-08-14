@@ -46,4 +46,4 @@ MAPS_API_KEY={ADD_YOUR_API_KEY}
 [Download Disaster App](https://drive.google.com/file/d/19p3066fjrMu2yBnZvhw1kRLT3XAthSiI/view?usp=sharing)
 
 ## Instrument Testing
-[Youtube](https://youtu.be/46KFl-pKdbM)
+[![Preview](https://img.youtube.com/vi/46KFl-pKdbM/0.jpg)](https://youtu.be/46KFl-pKdbM)
