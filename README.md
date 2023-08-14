@@ -44,3 +44,6 @@ MAPS_API_KEY={ADD_YOUR_API_KEY}
 
 ## APK Installation
 [Download Disaster App](https://drive.google.com/file/d/19p3066fjrMu2yBnZvhw1kRLT3XAthSiI/view?usp=sharing)
+
+## Instrument Testing
+[Youtube](https://youtu.be/46KFl-pKdbM)
