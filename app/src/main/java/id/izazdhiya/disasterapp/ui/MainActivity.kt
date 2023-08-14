@@ -68,7 +68,7 @@ class MainActivity : AppCompatActivity(){
     }
 
     companion object {
-        private const val REQUEST_POST_NOTIFICATIONS = 1
+        const val REQUEST_POST_NOTIFICATIONS = 1
     }
 
     private fun requestPermissions() {
